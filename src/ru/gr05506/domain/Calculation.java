@@ -6,11 +6,11 @@ public class Calculation {
     private final double lower;             // нижний предел a
     private final double upper;             // верхний предел b
     private final int intervals;            // число отрезков n
-    private final IntegrationMethod method;
+    private final RealisationMethod method;
     private final double result;            // значение интеграла
 
     public Calculation(String formula, double lower, double upper,
-                       int intervals, IntegrationMethod method, double result) {
+                       int intervals, RealisationMethod method, double result) {
         if (formula == null || formula.isBlank())
             throw new IllegalArgumentException("Формула не может быть пустой");
         if (method == null)
@@ -27,6 +27,6 @@ public class Calculation {
     public double getLower()              { return lower; }
     public double getUpper()              { return upper; }
     public int getIntervals()             { return intervals; }
-    public IntegrationMethod getMethod()  { return method; }
+    public RealisationMethod getMethod()  { return method; }
     public double getResult()             { return result; }
 }
