@@ -1,7 +1,7 @@
 // ui/CalculationFormPresenter.java
-package ru.gr05507.ui;
+package ru.gr05506.ui;
 
-import ru.gr05507.application.CalculationService;
+import ru.gr05506.application.CalculationService;
 
 public class CalculationFormPresenter {
     private final CalculatorView view;

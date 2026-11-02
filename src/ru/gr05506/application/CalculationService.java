@@ -1,10 +1,10 @@
-package ru.gr05507.application;
+package ru.gr05506.application;
 
-import ru.gr05507.domain.Calculation;
-import ru.gr05507.domain.CalculationRepository;
-import ru.gr05507.domain.FormulaParser;
-import ru.gr05507.domain.IntegrationMethod;
-import ru.gr05507.domain.Integrator;
+import ru.gr05506.domain.Calculation;
+import ru.gr05506.domain.CalculationRepository;
+import ru.gr05506.domain.FormulaParser;
+import ru.gr05506.domain.IntegrationMethod;
+import ru.gr05506.domain.Integrator;
 
 import java.util.List;
 import java.util.function.DoubleUnaryOperator;

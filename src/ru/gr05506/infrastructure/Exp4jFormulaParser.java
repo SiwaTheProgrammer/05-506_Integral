@@ -1,9 +1,9 @@
 // infrastructure/Exp4jFormulaParser.java
-package ru.gr05507.infrastructure;
+package ru.gr05506.infrastructure;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
-import ru.gr05507.domain.FormulaParser;
+import ru.gr05506.domain.FormulaParser;
 
 import java.util.function.DoubleUnaryOperator;
 

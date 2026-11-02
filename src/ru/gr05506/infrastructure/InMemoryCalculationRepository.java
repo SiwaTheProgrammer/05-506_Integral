@@ -1,7 +1,7 @@
-package ru.gr05507.infrastructure;
+package ru.gr05506.infrastructure;
 
-import ru.gr05507.domain.Calculation;
-import ru.gr05507.domain.CalculationRepository;
+import ru.gr05506.domain.Calculation;
+import ru.gr05506.domain.CalculationRepository;
 
 import java.util.ArrayList;
 import java.util.List;

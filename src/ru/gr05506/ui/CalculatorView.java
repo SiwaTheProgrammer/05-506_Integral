@@ -1,8 +1,8 @@
 // ui/CalculatorView.java
-package ru.gr05507.ui;
+package ru.gr05506.ui;
 
-import ru.gr05507.domain.Calculation;
-import ru.gr05507.domain.IntegrationMethod;
+import ru.gr05506.domain.Calculation;
+import ru.gr05506.domain.IntegrationMethod;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.gr05507.domain;
+package ru.gr05506.domain;
 
 // Один расчёт: входные параметры и полученный ответ
 public class Calculation {

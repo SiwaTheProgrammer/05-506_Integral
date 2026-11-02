@@ -1,8 +1,8 @@
 // ui/CalculationListPresenter.java
-package ru.gr05507.ui;
+package ru.gr05506.ui;
 
-import ru.gr05507.application.CalculationService;
-import ru.gr05507.domain.Calculation;
+import ru.gr05506.application.CalculationService;
+import ru.gr05506.domain.Calculation;
 
 public class CalculationListPresenter {
     private final CalculatorView view;
