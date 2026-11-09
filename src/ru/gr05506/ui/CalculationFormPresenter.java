@@ -1,15 +1,23 @@
 // ui/CalculationFormPresenter.java
 package ru.gr05506.ui;
 
+import ru.gr05506.application.CalculateCommand;
 import ru.gr05506.application.CalculationService;
+import ru.gr05506.application.CommandHistory;
 
 public class CalculationFormPresenter {
     private final CalculatorView view;
     private final CalculationService service;
+    private final CommandHistory history;
 
-    public CalculationFormPresenter(CalculatorView view, CalculationService service) {
+    public CalculationFormPresenter(
+            CalculatorView view,
+            CalculationService service,
+            CommandHistory history
+    ) {
         this.view = view;
         this.service = service;
+        this.history = history;
     }
 
     // Возвращает true, если расчёт выполнен и сохранён
@@ -21,7 +29,8 @@ public class CalculationFormPresenter {
             double lower = parseNumber(view.getLowerText(), "Нижний предел");
             double upper = parseNumber(view.getUpperText(), "Верхний предел");
             int intervals = parseInteger(view.getIntervalsText(), "Число отрезков");
-            service.calculate(formula, lower, upper, intervals, view.getMethod());
+            //service.calculate(formula, lower, upper, intervals, view.getMethod());
+            history.execute(new CalculateCommand(service, formula, lower, upper, intervals, view.getMethod()));
             view.clearForm();
             return true;
         } catch (IllegalArgumentException ex) {

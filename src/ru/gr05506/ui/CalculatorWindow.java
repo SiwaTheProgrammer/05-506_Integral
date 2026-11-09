@@ -2,6 +2,7 @@
 package ru.gr05506.ui;
 
 import ru.gr05506.application.CalculationService;
+import ru.gr05506.application.CommandHistory;
 import ru.gr05506.domain.Calculation;
 import ru.gr05506.domain.ListOfMethods;
 import ru.gr05506.domain.RealisationMethod;
@@ -25,8 +26,10 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     private final CalculationFormPresenter formPresenter;
     private final CalculationListPresenter listPresenter;
 
-    public CalculatorWindow(CalculationService service) {
-        this.formPresenter = new CalculationFormPresenter(this, service);
+    public CalculatorWindow(CalculationService service,
+                            CommandHistory history
+                            ) {
+        this.formPresenter = new CalculationFormPresenter(this, service, history);
         this.listPresenter = new CalculationListPresenter(this, service);
 
         setTitle("Определённый интеграл");
