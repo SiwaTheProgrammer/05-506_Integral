@@ -1,9 +1,9 @@
 // ui/CalculationFormPresenter.java
 package ru.gr05506.ui;
 
-import ru.gr05506.application.CalculateCommand;
+import ru.gr05506.application.commands.CalculateCommand;
 import ru.gr05506.application.CalculationService;
-import ru.gr05506.application.CommandHistory;
+import ru.gr05506.application.commands.CommandHistory;
 
 public class CalculationFormPresenter {
     private final CalculatorView view;

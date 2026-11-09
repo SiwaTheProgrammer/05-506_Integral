@@ -1,5 +1,5 @@
 import ru.gr05506.application.CalculationService;
-import ru.gr05506.application.CommandHistory;
+import ru.gr05506.application.commands.CommandHistory;
 import ru.gr05506.infrastructure.Exp4jFormulaParser;
 import ru.gr05506.infrastructure.InMemoryCalculationRepository;
 import ru.gr05506.ui.CalculatorWindow;

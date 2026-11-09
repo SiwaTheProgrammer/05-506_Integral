@@ -1,5 +1,6 @@
-package ru.gr05506.application;
+package ru.gr05506.application.commands;
 
+import ru.gr05506.application.CalculationService;
 import ru.gr05506.domain.Calculation;
 
 public class DeleteCommand implements Command{

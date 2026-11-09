@@ -1,4 +1,4 @@
-package ru.gr05506.application;
+package ru.gr05506.application.commands;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
