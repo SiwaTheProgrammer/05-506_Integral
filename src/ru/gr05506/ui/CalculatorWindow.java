@@ -31,7 +31,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
                             CommandHistory history
                             ) {
         this.formPresenter = new CalculationFormPresenter(this, service, history);
-        this.listPresenter = new CalculationListPresenter(this, service);
+        this.listPresenter = new CalculationListPresenter(this, service, history);
 
         setTitle("Определённый интеграл");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

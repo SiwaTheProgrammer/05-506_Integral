@@ -2,15 +2,24 @@
 package ru.gr05506.ui;
 
 import ru.gr05506.application.CalculationService;
+import ru.gr05506.application.Command;
+import ru.gr05506.application.CommandHistory;
+import ru.gr05506.application.DeleteCommand;
 import ru.gr05506.domain.Calculation;
 
 public class CalculationListPresenter {
     private final CalculatorView view;
     private final CalculationService service;
+    private final CommandHistory history;
 
-    public CalculationListPresenter(CalculatorView view, CalculationService service) {
+    public CalculationListPresenter(
+            CalculatorView view,
+            CalculationService service,
+            CommandHistory history
+    ) {
         this.view = view;
         this.service = service;
+        this.history = history;
     }
 
     public void start() {
@@ -27,7 +36,8 @@ public class CalculationListPresenter {
             view.showError("Выберите расчёт в списке");
             return;
         }
-        service.delete(calculation);
-        refresh();
+        //service.delete(calculation);
+        history.execute(new DeleteCommand(service, calculation));
+        refresh(); // УБРАТЬ !!! Когда реализован Observer
     }
 }
