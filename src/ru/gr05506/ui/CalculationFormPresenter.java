@@ -39,6 +39,14 @@ public class CalculationFormPresenter {
         }
     }
 
+    public void undoLast(){
+        if (!history.undo()) {
+            view.showError("Отменять нечего!");
+            return;
+        }
+        view.showCalculations(service.getAll()); // УБРАТЬ!! Когда реализован Observer
+    }
+
     private double parseNumber(String text, String fieldName) {
         if (text == null || text.isBlank())
             throw new IllegalArgumentException(fieldName + " не может быть пустым");

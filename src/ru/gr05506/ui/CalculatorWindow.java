@@ -20,6 +20,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     private final JComboBox<RealisationMethod> methodBox = new JComboBox<>(ListOfMethods.standard().toArray(new RealisationMethod[0]));
     private final JButton calculateButton = new JButton("Вычислить");
     private final JButton deleteButton = new JButton("Удалить");
+    private final JButton undoButton = new JButton("Отменить");
     private final DefaultListModel<Calculation> listModel = new DefaultListModel<>();
     private final JList<Calculation> calculationList = new JList<>(listModel);
 
@@ -56,6 +57,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
         JPanel buttons = new JPanel(new FlowLayout());
         buttons.add(calculateButton);
         buttons.add(deleteButton);
+        buttons.add(undoButton);
 
         JPanel top = new JPanel(new BorderLayout(5, 5));
         top.add(form, BorderLayout.CENTER);
@@ -79,6 +81,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
             if (formPresenter.calculateClicked()) listPresenter.refresh();
         });
         deleteButton.addActionListener(e -> listPresenter.deleteSelected());
+        undoButton.addActionListener(e -> formPresenter.undoLast());
     }
 
     // Строка списка: параметры решения и ответ
