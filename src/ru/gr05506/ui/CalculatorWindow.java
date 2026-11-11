@@ -77,11 +77,9 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
             }
         });
 
-        calculateButton.addActionListener(e -> {
-            formPresenter.calculateClicked();
-        });
-        deleteButton.addActionListener(e -> listPresenter.deleteSelected());
-        undoButton.addActionListener(e -> formPresenter.undoLast());
+        calculateButton.addActionListener(_ -> formPresenter.calculateClicked());
+        deleteButton.addActionListener(_ -> listPresenter.deleteSelected());
+        undoButton.addActionListener(_ -> formPresenter.undoLast());
     }
 
     // Строка списка: параметры решения и ответ
