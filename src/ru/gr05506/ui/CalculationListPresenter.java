@@ -2,11 +2,12 @@
 package ru.gr05506.ui;
 
 import ru.gr05506.application.CalculationService;
+import ru.gr05506.application.CalculationsChangeListener;
 import ru.gr05506.application.commands.CommandHistory;
 import ru.gr05506.application.commands.DeleteCommand;
 import ru.gr05506.domain.Calculation;
 
-public class CalculationListPresenter {
+public class CalculationListPresenter implements CalculationsChangeListener {
     private final CalculatorView view;
     private final CalculationService service;
     private final CommandHistory history;
@@ -22,6 +23,7 @@ public class CalculationListPresenter {
     }
 
     public void start() {
+        service.addChangeListener(this);
         refresh();
     }
 
@@ -37,6 +39,10 @@ public class CalculationListPresenter {
         }
         //service.delete(calculation);
         history.execute(new DeleteCommand(service, calculation));
-        refresh(); // УБРАТЬ !!! Когда реализован Observer
+    }
+
+    @Override
+    public void calculationsChanged() {
+        refresh();
     }
 }

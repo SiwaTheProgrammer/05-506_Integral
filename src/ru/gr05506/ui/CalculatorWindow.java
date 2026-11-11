@@ -78,7 +78,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
         });
 
         calculateButton.addActionListener(e -> {
-            if (formPresenter.calculateClicked()) listPresenter.refresh();
+            formPresenter.calculateClicked();
         });
         deleteButton.addActionListener(e -> listPresenter.deleteSelected());
         undoButton.addActionListener(e -> formPresenter.undoLast());
