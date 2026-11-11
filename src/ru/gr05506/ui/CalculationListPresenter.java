@@ -41,6 +41,16 @@ public class CalculationListPresenter implements CalculationsChangeListener {
         history.execute(new DeleteCommand(service, calculation));
     }
 
+    public void drawSelected() {
+        Calculation calculation = view.getSelected();
+
+        if (calculation == null) {
+            view.showError("Выберите расчёт в списке");
+            return;
+        }
+        view.drawGraph(calculation);
+    }
+
     @Override
     public void calculationsChanged() {
         refresh();

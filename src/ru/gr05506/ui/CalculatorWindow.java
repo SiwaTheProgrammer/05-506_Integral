@@ -1,6 +1,7 @@
 // ui/CalculatorWindow.java
 package ru.gr05506.ui;
 
+import net.objecthunter.exp4j.Expression;
 import ru.gr05506.application.CalculationService;
 import ru.gr05506.application.commands.CommandHistory;
 import ru.gr05506.domain.Calculation;
@@ -21,6 +22,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     private final JButton calculateButton = new JButton("Вычислить");
     private final JButton deleteButton = new JButton("Удалить");
     private final JButton undoButton = new JButton("Отменить");
+    private final JButton drawButton = new JButton("Отобразить");
     private final DefaultListModel<Calculation> listModel = new DefaultListModel<>();
     private final JList<Calculation> calculationList = new JList<>(listModel);
 
@@ -58,6 +60,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
         buttons.add(calculateButton);
         buttons.add(deleteButton);
         buttons.add(undoButton);
+        buttons.add(drawButton);
 
         JPanel top = new JPanel(new BorderLayout(5, 5));
         top.add(form, BorderLayout.CENTER);
@@ -80,6 +83,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
         calculateButton.addActionListener(_ -> formPresenter.calculateClicked());
         deleteButton.addActionListener(_ -> listPresenter.deleteSelected());
         undoButton.addActionListener(_ -> formPresenter.undoLast());
+        drawButton.addActionListener(_ -> listPresenter.drawSelected());
     }
 
     // Строка списка: параметры решения и ответ
@@ -110,6 +114,24 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     public void showCalculations(List<Calculation> calculations) {
         listModel.clear();
         for (Calculation c : calculations) listModel.addElement(c);
+    }
+
+    @Override
+    public void drawGraph(Calculation calculation) {
+        GraphPanel graphPanel = new GraphPanel(calculation);
+        JSlider slider = new JSlider(1, 100, 40);
+        slider.addChangeListener( _ -> graphPanel.setScale(slider.getValue()));
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(graphPanel,BorderLayout.CENTER);
+        panel.add(slider,BorderLayout.SOUTH);
+
+        JOptionPane.showMessageDialog(
+                this,
+                panel,
+                "График функции: " + calculation.getFormula(),
+                JOptionPane.PLAIN_MESSAGE
+        );
     }
 
     @Override

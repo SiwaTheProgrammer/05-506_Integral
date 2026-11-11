@@ -18,4 +18,5 @@ public interface CalculatorView {
     void clearForm();
     void showCalculations(List<Calculation> calculations);
     void showError(String message);
+    void drawGraph(Calculation calculation);
 }
