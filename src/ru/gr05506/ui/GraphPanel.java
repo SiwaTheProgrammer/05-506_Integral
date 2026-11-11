@@ -45,7 +45,7 @@ public class GraphPanel extends JPanel {
         drawGridAndAxes(g2, width, height, centerX, centerY);
 
         //Пределы интегрирования
-        drawBorders(g2,width,height,centerX,centerY);
+        drawBorders(g2,height,centerX);
 
         //График функции
         if (expression != null) {
@@ -71,7 +71,7 @@ public class GraphPanel extends JPanel {
         g2.drawLine(centerX, 0, centerX, height); // Ось Y
     }
 
-    private void drawBorders(Graphics2D g2, int width, int height, int centerX, int centerY) {
+    private void drawBorders(Graphics2D g2, int height, int centerX) {
         g2.setColor(Color.GREEN);
         g2.setStroke(new BasicStroke(2.0f));
 

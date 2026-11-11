@@ -1,7 +1,6 @@
 // ui/CalculatorWindow.java
 package ru.gr05506.ui;
 
-import net.objecthunter.exp4j.Expression;
 import ru.gr05506.application.CalculationService;
 import ru.gr05506.application.commands.CommandHistory;
 import ru.gr05506.domain.Calculation;
