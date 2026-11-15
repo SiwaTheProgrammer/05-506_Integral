@@ -38,4 +38,15 @@ public class CalculateCommand implements Command{
     public void undo() {
         service.delete(calculation);
     }
+
+    @Override
+    public boolean canExecute() {
+        boolean result = isInBounds(lower) && isInBounds(upper) && isInBounds(intervals);
+        result &= !(formula.isBlank() || method == null);
+        return result;
+    }
+
+    private boolean isInBounds(double number) {
+        return Double.isFinite(number);
+    }
 }

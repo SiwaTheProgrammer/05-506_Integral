@@ -41,6 +41,10 @@ public class CalculationListPresenter implements CalculationsChangeListener {
         history.execute(new DeleteCommand(service, calculation));
     }
 
+    public boolean isAnySelected() {
+        return view.getSelected() != null;
+    }
+
     @Override
     public void calculationsChanged() {
         refresh();

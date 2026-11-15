@@ -9,6 +9,8 @@ import ru.gr05506.domain.RealisationMethod;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class CalculatorWindow extends JFrame implements CalculatorView {
@@ -77,9 +79,49 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
             }
         });
 
-        calculateButton.addActionListener(_ -> formPresenter.calculateClicked());
-        deleteButton.addActionListener(_ -> listPresenter.deleteSelected());
-        undoButton.addActionListener(_ -> formPresenter.undoLast());
+        calculateButton.addActionListener(_ -> {
+            formPresenter.calculateClicked();
+            updateButtonStates();
+        });
+        deleteButton.addActionListener(_ -> {
+            listPresenter.deleteSelected();
+            updateButtonStates();
+        });
+        undoButton.addActionListener(_ -> {
+            formPresenter.undoLast();
+            updateButtonStates();
+        });
+
+        calculateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        undoButton.setEnabled(false);
+
+        formulaField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateButtonStates();
+            }
+        });
+        intervalsField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateButtonStates();
+            }
+        });
+        lowerField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateButtonStates();
+            }
+        });
+        upperField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateButtonStates();
+            }
+        });
+
+        calculationList.addListSelectionListener(e -> updateButtonStates());
     }
 
     // Строка списка: параметры решения и ответ
@@ -90,6 +132,12 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
                 + " | " + c.getMethod()
                 + " | n = " + c.getIntervals()
                 + " | I = " + String.format("%.8f", c.getResult());
+    }
+
+    private void updateButtonStates(){
+        calculateButton.setEnabled(formPresenter.canExecute());
+        deleteButton.setEnabled(listPresenter.isAnySelected());
+        undoButton.setEnabled(formPresenter.canUndo());
     }
 
     @Override public String getFormula()            { return formulaField.getText(); }

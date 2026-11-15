@@ -24,4 +24,9 @@ public class DeleteCommand implements Command{
     public void undo() {
         service.restore(calculation);
     }
+
+    @Override
+    public boolean canExecute() {
+        return calculation != null;
+    }
 }
