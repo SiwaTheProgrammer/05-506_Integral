@@ -40,7 +40,6 @@ public class CalculationListPresenter implements CalculationsChangeListener {
         //service.delete(calculation);
         history.execute(new DeleteCommand(service, calculation));
     }
-
     public void drawSelected() {
         Calculation calculation = view.getSelected();
 
@@ -49,6 +48,9 @@ public class CalculationListPresenter implements CalculationsChangeListener {
             return;
         }
         view.drawGraph(calculation);
+    }
+    public boolean isAnySelected() {
+        return view.getSelected() != null;
     }
 
     @Override

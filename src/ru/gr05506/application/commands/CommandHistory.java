@@ -16,4 +16,8 @@ public class CommandHistory {
         history.pop().undo();
         return true;
     }
+
+    public boolean canUndo() {
+        return !history.isEmpty();
+    }
 }
