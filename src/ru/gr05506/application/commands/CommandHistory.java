@@ -7,8 +7,10 @@ public class CommandHistory {
     private final Deque<Command> history = new ArrayDeque<>();
 
     public void execute(Command command){
-        command.execute();
-        history.push(command);
+        if (command.canExecute()) {
+            command.execute();
+            history.push(command);
+        }
     }
 
     public boolean undo(){
