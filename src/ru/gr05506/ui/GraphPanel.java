@@ -98,8 +98,8 @@ public class GraphPanel extends JPanel {
                 // Вычисляем Y через exp4j
                 double mathY = expression.setVariable("x", mathX).evaluate();
 
-                // Пропускаем разрывы (например, деление на ноль или tan(pi/2))
-                if (Double.isNaN(mathY) || Double.isInfinite(mathY)) {
+                // Если функция в точке не определена (log(x) || sqrt(x); x < 0)
+                if (Double.isNaN(mathY)) {
                     firstPoint = true;
                     continue;
                 }
@@ -107,10 +107,9 @@ public class GraphPanel extends JPanel {
                 // Переводим математический Y в экранный Y (ось Y в Swing направлена вниз)
                 double screenY = centerY - (mathY * scale);
 
-                // Защита от резких скачков при асимптотах (как у 1/x)
+                // Если функция принимает значения -Inf (log(x) || tan(x))
                 if (screenY < -height || screenY > height * 2) {
-                    firstPoint = true;
-                    continue;
+                    screenY = screenY < -height ? -height : height*2;
                 }
 
                 if (firstPoint) {
@@ -120,8 +119,21 @@ public class GraphPanel extends JPanel {
                     path.lineTo(screenX, screenY);
                 }
             } catch (ArithmeticException e) {
-                // Игнорируем точки, где функция не определена (например, sqrt(-1))
+                // отрисовка асимптот вида  1/x
+                if (e.getMessage().equals("Division by zero!")) {
+                    double leftNB = expression.setVariable("x", mathX - Double.MIN_VALUE).evaluate();
+                    double rightNB = expression.setVariable("x", mathX + Double.MIN_VALUE).evaluate();
+                    double leftScreenY = centerY - (leftNB * scale);
+                    double rightScreenY = centerY - (rightNB * scale);
+                    leftScreenY = leftScreenY < -height ? -height : height *2;
+                    rightScreenY = rightScreenY < -height ? -height : height *2;
+                    path.lineTo(screenX, leftScreenY);
+                    path.moveTo(screenX,rightScreenY);
+                    continue;
+                }
+                    // иные случаи
                 firstPoint = true;
+
             }
         }
 
